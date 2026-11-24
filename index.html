@@ -11,6 +11,17 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="הקופה">
+<meta name="description" content="הרשמה לערבי פוקר, ניהול קופה, טבלת ניקוד וסיכומי ערב">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="הקופה">
+<meta property="og:title" content="הקופה · פוקר ביתי 🃏">
+<meta property="og:description" content="נרשמים לערב הבא, מנהלים את הקופה ורואים מי מוביל בטבלה">
+<meta property="og:url" content="https://topory111-ops.github.io/poker-calculator/">
+<meta property="og:image" content="https://topory111-ops.github.io/poker-calculator/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
 <title>הקופה · פוקר ביתי</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -319,6 +330,17 @@
   #app.tabin .card,#app.tabin .inv,#app.tabin .scard{animation:rise .3s ease both}
   @keyframes rise{from{opacity:0;transform:translateY(6px)}}
   .scard .savebar{border-top:none;padding-top:4px}
+  /* ---- install banner ---- */
+  .instb{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,rgba(230,202,139,.16),rgba(230,202,139,.05));
+    border:1px solid rgba(230,202,139,.4);border-radius:16px;padding:10px 10px 10px 8px;margin-bottom:12px;animation:rise .3s ease both}
+  .instb img{width:42px;height:42px;border-radius:11px;flex:0 0 auto}
+  .instb div{flex:1;min-width:0} .instb b{display:block;font-size:14px} .instb small{display:block;font-size:11.5px;color:var(--dim);font-weight:600}
+  .instgo{border:none;border-radius:10px;padding:9px 12px;font-family:inherit;font-weight:800;font-size:13.5px;cursor:pointer;
+    background:linear-gradient(180deg,var(--brass-hi),var(--brass));color:#3a2c0e;white-space:nowrap}
+  .instx{background:none;border:none;color:var(--dim);font-size:13px;cursor:pointer;padding:4px}
+  .istep{display:flex;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--soft);border-radius:12px;padding:11px 12px;margin-bottom:8px;font-size:15px}
+  .istep span{width:28px;height:28px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-family:'Heebo';font-weight:900;
+    background:var(--brass);color:#3a2c0e}
 </style>
 </head>
 <body>
@@ -695,9 +717,9 @@ function formHTML(){
   </div>`;
 }
 function nextHTML(){
-  if(CLOUD && !loaded) return `${whoAmIHTML()}<div class="loading">${loadErr?esc(loadErr):'מתחבר לשרת…'}</div>`;
+  if(CLOUD && !loaded) return `${installBannerHTML()}${whoAmIHTML()}<div class="loading">${loadErr?esc(loadErr):'מתחבר לשרת…'}</div>`;
   const up=upcoming();
-  return `${whoAmIHTML()}
+  return `${installBannerHTML()}${whoAmIHTML()}
     ${up.length?up.map(gameCardHTML).join(''):`<div class="card" style="text-align:center"><h2>אין ערב מתוכנן</h2><div class="muted">מי שמנהל — קבע ערב והחבר'ה יירשמו</div></div>`}
     ${adminForm?formHTML():`<button class="addgame" onclick="openForm()">＋ קבע ערב חדש</button>`}
     ${CLOUD?'':`<div class="notice">📱 מצב מקומי — ההרשמה והטבלה נשמרות רק בטלפון הזה.<br>כדי שכולם יראו אותן צריך לחבר שרת (Firebase).</div>`}`;
@@ -984,6 +1006,38 @@ function sfx(kind){
   else if(kind==='chip'){ clack(a,t,0.6,2400); clack(a,t+0.07,0.45,2900); }
   else if(kind==='chips'){ for(let i=0;i<5;i++) clack(a,t+i*0.055+Math.random()*0.02,0.5-i*0.06,2200+Math.random()*1200); }
   else if(kind==='win'){ [523,659,784,1047].forEach((f,i)=>tone(a,t+i*0.09,f,0.35,0.12)); clack(a,t,0.4,2600); }
+}
+
+/* ================= install as app ================= */
+let installEvt=null;
+const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || navigator.standalone===true;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); installEvt=e; softRender(); });
+window.addEventListener('appinstalled', ()=>{ installEvt=null; LS.set('kupa_installed',true); softRender(); });
+if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost'))
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+function installBannerHTML(){
+  if(isStandalone() || LS.get('kupa_installed',false) || LS.get('kupa_noinstall',false)) return '';
+  return `<div class="instb">
+    <img src="${document.querySelector('link[rel=apple-touch-icon]').href}" alt="">
+    <div><b>התקינו את "הקופה" בטלפון</b><small>אייקון במסך הבית, נפתח כמו אפליקציה</small></div>
+    <button class="instgo" onclick="installApp()">📲 התקן</button>
+    <button class="instx" onclick="LS.set('kupa_noinstall',true);render()" aria-label="סגור">✕</button>
+  </div>`;
+}
+async function installApp(){
+  if(installEvt){ installEvt.prompt(); const r=await installEvt.userChoice; installEvt=null; if(r&&r.outcome==='accepted'){ LS.set('kupa_installed',true); sfx('win'); } render(); return; }
+  const steps = isIOS
+    ? ['פותחים את הקישור ב-<b>ספארי</b>','לוחצים על כפתור השיתוף <b>⬆️</b> בתחתית','בוחרים <b>"הוסף למסך הבית"</b> ← <b>הוסף</b>']
+    : ['פותחים את הקישור ב-<b>כרום</b>','לוחצים על <b>⋮</b> למעלה','בוחרים <b>"התקנת אפליקציה"</b> או <b>"הוספה למסך הבית"</b>'];
+  const o=document.createElement('div'); o.className='sheet'; o.id='instsheet';
+  o.innerHTML=`<div class="sheetbg" onclick="this.parentNode.remove()"></div>
+    <div class="sheetbox"><div class="grab"></div><button class="sx" onclick="$('instsheet').remove()" aria-label="סגור">✕</button>
+      <div class="stitle" style="margin:6px 0 12px">📲 התקנה בטלפון</div>
+      ${steps.map((t,i)=>`<div class="istep"><span>${i+1}</span><div>${t}</div></div>`).join('')}
+      <div class="muted" style="margin-top:10px">אחרי זה "הקופה" תופיע במסך הבית עם הצ'יפ האדום ♠</div>
+    </div>`;
+  document.body.appendChild(o);
 }
 
 /* ================= render ================= */

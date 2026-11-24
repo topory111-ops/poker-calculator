@@ -234,6 +234,91 @@
   .ptab th{color:var(--dim);font-weight:700;font-size:11.5px;text-align:start;padding:4px}
   .ptab td{padding:5px 4px;border-top:1px solid var(--soft)}
   .loading{text-align:center;color:var(--dim);padding:40px 10px;font-weight:700}
+  /* ---- v4 stage 1: invitation ---- */
+  .inv{position:relative;overflow:hidden;border-radius:22px;padding:18px 18px 14px;margin-bottom:12px;
+    background:radial-gradient(120% 90% at 100% 0%,rgba(230,202,139,.16),transparent 55%),linear-gradient(165deg,#145140,#0b3128 70%);
+    border:1px solid rgba(230,202,139,.35);box-shadow:0 14px 30px -18px rgba(0,0,0,.8)}
+  .inv::before{content:'♠ ♥ ♦ ♣';position:absolute;left:-6px;bottom:-16px;font-size:64px;letter-spacing:6px;opacity:.05;pointer-events:none;white-space:nowrap}
+  .inv.today{border-color:rgba(95,211,154,.55)}
+  .invtop{display:flex;gap:6px;margin-bottom:8px}
+  .invtag{font-size:11.5px;font-weight:800;letter-spacing:.5px;padding:4px 10px;border-radius:999px;background:rgba(243,235,216,.08);color:var(--brass-hi)}
+  .invtag.hot{background:rgba(95,211,154,.15);color:var(--win);animation:pulse 1.6s ease-in-out infinite}
+  .cd{font-family:'Heebo';font-weight:900;font-size:34px;line-height:1.1;
+    background:linear-gradient(180deg,#fff6df,var(--brass-hi));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .invdate{font-size:15px;font-weight:700;margin-top:4px}
+  .invmeta{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+  .invmeta span{font-size:12.5px;font-weight:700;color:var(--bone);background:rgba(8,36,28,.6);border:1px solid var(--soft);border-radius:10px;padding:5px 9px}
+  .invsec{font-size:14px;margin-bottom:2px}
+  .inv .coming .who{animation:popin .35s cubic-bezier(.2,1.4,.4,1) both}
+  .bigbtn.rsvp{font-size:18px;padding:15px;box-shadow:0 8px 20px -10px rgba(230,202,139,.7);margin-top:4px}
+  .bigbtn.rsvp.in{box-shadow:none}
+  .bp{position:fixed;z-index:99;pointer-events:none;font-size:20px;font-weight:900;transform:translate(-50%,-50%);
+    animation:bp .9s cubic-bezier(.15,.7,.3,1) forwards}
+  @keyframes bp{to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(200deg) scale(.6);opacity:0}}
+  @keyframes popin{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+  @keyframes pulse{50%{opacity:.55}}
+  /* ---- v4 stage 2: podium + titles ---- */
+  .podium3{display:grid;grid-template-columns:1fr 1.15fr 1fr;align-items:end;gap:8px;margin:34px 0 14px}
+  .step{display:flex;flex-direction:column;align-items:center;text-align:center;cursor:pointer;position:relative}
+  .step .mc{width:58px;height:58px;font-size:24px;margin-bottom:6px;box-shadow:0 0 0 3px #b9c2c9}
+  .step.s1 .mc{width:76px;height:76px;font-size:32px;box-shadow:0 0 0 3px var(--brass-hi),0 0 22px rgba(230,202,139,.45)}
+  .step.s3 .mc{box-shadow:0 0 0 3px #c98a54}
+  .step b{font-size:14.5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .spts{font-family:'Heebo';font-weight:900;font-size:15px;margin:2px 0 6px}
+  .step.s1 .spts{font-size:19px}
+  .crown{position:absolute;top:-24px;font-size:26px;animation:bob 2.4s ease-in-out infinite}
+  .ped{width:100%;border-radius:12px 12px 4px 4px;display:grid;place-items:center;
+    background:linear-gradient(180deg,rgba(243,235,216,.14),rgba(243,235,216,.04));border:1px solid var(--line)}
+  .ped span{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:26px;color:var(--brass-hi)}
+  .s1 .ped{height:78px;background:linear-gradient(180deg,rgba(230,202,139,.35),rgba(230,202,139,.08))}
+  .s2 .ped{height:56px} .s3 .ped{height:42px}
+  .step.empty{visibility:hidden}
+  @keyframes bob{50%{transform:translateY(-4px) rotate(-6deg)}}
+  .titles{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 12px;margin-bottom:2px}
+  .titles::-webkit-scrollbar{height:0}
+  .ttile{flex:0 0 auto;min-width:150px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 11px;cursor:pointer}
+  .ttile .tt{font-size:12px;font-weight:800;color:var(--brass-hi);display:flex;gap:5px;align-items:center;margin-bottom:7px}
+  .ttile .tt span{font-size:15px}
+  .tw{display:flex;align-items:center;gap:8px}
+  .tw .mc{width:32px;height:32px;font-size:15px}
+  .tw b{display:block;font-size:14px}
+  .tw small{display:block;font-size:11px;color:var(--dim);font-weight:600;white-space:nowrap}
+  /* ---- v4 stage 3: player sheet ---- */
+  .sheet{position:fixed;inset:0;z-index:50}
+  .sheetbg{position:absolute;inset:0;background:rgba(3,15,11,.6);backdrop-filter:blur(3px);animation:fade .2s ease}
+  .sheetbox{position:absolute;bottom:0;left:0;right:0;margin:0 auto;max-width:480px;max-height:88dvh;overflow-y:auto;
+    background:linear-gradient(180deg,#124636,#0a2c23 40%);border:1px solid var(--line);border-bottom:none;border-radius:24px 24px 0 0;
+    padding:10px 16px calc(24px + env(safe-area-inset-bottom));animation:up .28s cubic-bezier(.2,.9,.3,1)}
+  .sheet.closing .sheetbox{animation:down .22s ease forwards} .sheet.closing .sheetbg{animation:fade .22s reverse forwards}
+  @keyframes up{from{transform:translateY(100%)}} @keyframes down{to{transform:translateY(100%)}} @keyframes fade{from{opacity:0}}
+  .grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 10px}
+  .sx{position:absolute;top:12px;left:12px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--felt2);color:var(--bone);font-size:14px;cursor:pointer}
+  .phead{display:flex;align-items:center;gap:14px;margin:4px 0 14px}
+  .phead .mc{width:68px;height:68px;font-size:30px;box-shadow:0 0 0 3px var(--brass)}
+  .phead h2{font-family:'Frank Ruhl Libre',serif;font-size:26px;margin:0}
+  .pstats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+  .pstats div{background:var(--panel);border:1px solid var(--soft);border-radius:12px;padding:9px 4px;text-align:center}
+  .pstats b{display:block;font-family:'Heebo';font-weight:900;font-size:16px}
+  .pstats small{font-size:10.5px;color:var(--dim);font-weight:700}
+  .pcard{background:var(--panel);border:1px solid var(--soft);border-radius:14px;padding:11px 12px;margin-bottom:10px}
+  .bigchart{width:100%;height:auto;display:block}
+  .ctip{font-size:12.5px;color:var(--dim);font-weight:600;text-align:center;min-height:18px;margin-top:4px}
+  .bw{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .bw .pcard{text-align:center;display:flex;flex-direction:column;gap:2px}
+  .bw small{font-size:11.5px;color:var(--dim);font-weight:700}
+  .bw b{font-family:'Heebo';font-size:19px;font-weight:900}
+  /* ---- v4 stage 5: polish ---- */
+  .sndbtn{background:none;border:none;font-size:16px;cursor:pointer;padding:2px 4px;margin-inline-start:4px;opacity:.8}
+  header{align-items:center}
+  #app.tabin{animation:tabin .26s cubic-bezier(.2,.8,.3,1)}
+  @keyframes tabin{from{opacity:0;transform:translateY(8px)}}
+  .row.flash{animation:flash .5s ease}
+  @keyframes flash{30%{background:rgba(230,202,139,.22);border-color:var(--brass)}}
+  .rb:active,.bigbtn:active,.ghost:active,.face:active,.tabs button:active{transform:scale(.95);transition:transform .08s}
+  .lb{transition:background .15s} .lb:active{background:rgba(243,235,216,.06)}
+  #app.tabin .card,#app.tabin .inv,#app.tabin .scard{animation:rise .3s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}}
+  .scard .savebar{border-top:none;padding-top:4px}
 </style>
 </head>
 <body>
@@ -374,8 +459,9 @@ function nightScores(g){
 function aggregate(){
   const m={};
   played().forEach(g=>nightScores(g).forEach(p=>{
-    const a=m[p.name]||(m[p.name]={name:p.name,pts:0,net:0,in:0,nights:0,wins:0,titles:0,streak:0,bestStreak:0,cum:[]});
-    a.pts=r1(a.pts+p.pts); a.net+=p.net; a.in+=p.in; a.nights++;
+    const a=m[p.name]||(m[p.name]={name:p.name,pts:0,net:0,in:0,nights:0,wins:0,titles:0,streak:0,bestStreak:0,entries:0,best:-Infinity,worst:Infinity,cum:[],hist:[]});
+    a.pts=r1(a.pts+p.pts); a.net+=p.net; a.in+=p.in; a.nights++; a.entries+=p.e;
+    a.best=Math.max(a.best,p.net); a.worst=Math.min(a.worst,p.net); a.hist.push({date:g.date,place:g.place||'',net:p.net,e:p.e,pts:p.pts,top:p.top});
     if(p.net>0.005){ a.wins++; a.streak++; a.bestStreak=Math.max(a.bestStreak,a.streak); } else a.streak=0;
     if(p.top) a.titles++; a.cum.push(a.pts);
   }));
@@ -420,7 +506,7 @@ function isUsed(name){ const n=name.trim(); return S.players.some(p=>p.name.trim
 function addFromRoster(idx){
   const r=ROSTER[idx]; if(isUsed(r.name)) return;
   const slot=S.players.find(p=>p.name.trim()===''); if(!slot) return;
-  slot.name=r.name; applyRoster(slot); slot.buyIn=S.buyIn; slot.cashOut=null; save(); render();
+  slot.name=r.name; applyRoster(slot); slot.buyIn=S.buyIn; slot.cashOut=null; save(); render(); sfx('tick'); buzz(8);
 }
 
 function statusHTML(){
@@ -461,7 +547,8 @@ function saveBlockHTML(){
   return `<div class="savebar">
       <input type="date" class="datein" id="gdate" value="${(g&&g.date)||S.date||todayISO()}" max="${todayISO()}">
       <button class="savebtn ${again?'again':''}" onclick="saveNight()">${again?'↻ עדכן ערב שמור':'💾 סיים ושמור ערב'}</button>
-    </div>${again?`<div class="savednote">✓ הערב נשמר בטבלה${CLOUD?' — כולם רואים אותו':''}</div>`:''}`;
+    </div>${again?`<div class="savednote">✓ הערב נשמר בטבלה${CLOUD?' — כולם רואים אותו':''}</div>
+      <button class="bigbtn" style="margin-top:10px" onclick="shareNight('${S.gameId}')">📸 שתף סיכום ערב</button>`:''}`;
 }
 function settleHTML(){
   const nm=named();
@@ -545,22 +632,56 @@ function whoAmIHTML(){
       <button class="face" onclick="setMeOther()"><span class="fimg"><span class="ftxt" style="background:#3a6ea5">＋</span></span><small>אחר</small></button>
     </div></div>`;
 }
+function gameStart(g){ return new Date(`${g.date}T${g.time||'21:00'}:00`); }
+function countdownText(g){
+  const start=gameStart(g), now=new Date(), ms=start-now;
+  const dayDiff=Math.round((new Date(g.date+'T12:00')-new Date(todayISO()+'T12:00'))/864e5);
+  if(ms<=0) return dayDiff===0?'משחקים עכשיו 🔥':'הערב התחיל';
+  if(dayDiff===0){
+    const h=Math.floor(ms/36e5), m=Math.floor(ms%36e5/6e4);
+    return h>=1 ? `עוד ${h===1?'שעה':h===2?'שעתיים':h+' שעות'}` : `עוד ${m} דק׳!`;
+  }
+  if(dayDiff===1) return 'מחר';
+  return `עוד ${dayDiff} ימים`;
+}
+function tickCountdowns(){
+  document.querySelectorAll('[data-cd]').forEach(el=>{ const g=DATA.games[el.dataset.cd]; if(g) el.textContent=countdownText(g); });
+}
+setInterval(tickCountdowns,30000);
 function gameCardHTML(g){
   const list=rsvpList(g), mine=me && g.rsvp[key(me)];
-  return `<div class="card">
-    <div class="muted">${g.date===todayISO()?'הערב! 🔥':'הערב הבא'}</div>
-    <div class="gwhen">${esc(dayLabel(g.date))}</div>
-    <div class="gmeta">${g.time?`<span>🕘 ${esc(g.time)}</span>`:''}${g.place?`<span>📍 ${esc(g.place)}</span>`:''}<span>💰 כניסה ${fmt(g.buyIn)}</span></div>
-    <div class="muted">${list.length?`${list.length} באים:`:'עוד אף אחד לא נרשם'}</div>
-    <div class="coming">${list.map(r=>`<div class="who">${mc(avatarFor(r.name))}<small>${esc(r.name)}</small></div>`).join('')}</div>
-    ${me?`<button class="bigbtn ${mine?'in':''}" onclick="toggleRsvp('${g.id}')">${mine?'✓ אתה ברשימה · לחץ לביטול':'✋ אני בא'}</button>`
-        :`<div class="muted" style="text-align:center">בחר מי אתה למעלה כדי להירשם</div>`}
+  const today=g.date===todayISO();
+  return `<div class="inv ${today?'today':''}">
+    <div class="invtop"><span class="invtag">🃏 ערב פוקר</span>${today?'<span class="invtag hot">הערב!</span>':''}</div>
+    <div class="cd" data-cd="${g.id}">${countdownText(g)}</div>
+    <div class="invdate">${esc(dayLabel(g.date))}</div>
+    <div class="invmeta">
+      ${g.time?`<span>🕘 ${esc(g.time)}</span>`:''}${g.place?`<span>📍 ${esc(g.place)}</span>`:''}<span>💰 ${fmt(g.buyIn)}</span>
+    </div>
+    <div class="invsec"><b>${list.length?`${list.length} מגיעים`:'עוד אף אחד לא נרשם'}</b>${list.length?'':'<span class="muted"> · תהיה הראשון 👇</span>'}</div>
+    ${list.length?`<div class="coming">${list.map((r,i)=>`<div class="who" style="animation-delay:${i*40}ms">${mc(avatarFor(r.name))}<small>${esc(r.name)}</small></div>`).join('')}</div>`:''}
+    ${me?`<button class="bigbtn rsvp ${mine?'in':''}" id="rsvp-${g.id}" onclick="toggleRsvp('${g.id}',this)">${mine?'✓ אתה בפנים · לחץ לביטול':'✋ אני בא!'}</button>`
+        :`<div class="muted" style="text-align:center;margin-top:8px">בחר מי אתה למעלה כדי להירשם</div>`}
     <div class="btnrow">
-      <button class="ghost wa" onclick="shareGame('${g.id}')">שתף בוואטסאפ</button>
-      <button class="ghost" onclick="openKupa('${g.id}')">🧮 פתח קופה לערב</button>
+      <button class="ghost wa" onclick="shareGame('${g.id}')">💬 הזמן בוואטסאפ</button>
+      <button class="ghost" onclick="openKupa('${g.id}')">🧮 פתח קופה</button>
     </div>
     <div class="adminrow"><span></span><button class="link danger" onclick="deleteGame('${g.id}')">מחק ערב</button></div>
   </div>`;
+}
+function burst(el){
+  if(!el) return;
+  const r=el.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2;
+  const suits=['♠','♥','♦','♣','🪙'];
+  for(let i=0;i<14;i++){
+    const s=document.createElement('span'); s.className='bp';
+    s.textContent=suits[i%suits.length];
+    const a=Math.random()*Math.PI*2, d=60+Math.random()*90;
+    s.style.left=cx+'px'; s.style.top=cy+'px';
+    s.style.setProperty('--dx',Math.cos(a)*d+'px'); s.style.setProperty('--dy',(Math.sin(a)*d-40)+'px');
+    s.style.color= i%4===1||i%4===2 ? '#e0736b' : '#f3ebd8';
+    document.body.appendChild(s); setTimeout(()=>s.remove(),900);
+  }
 }
 function formHTML(){
   return `<div class="card"><h2>ערב חדש</h2>
@@ -602,16 +723,12 @@ function boardHTML(){
      <div class="muted">בסוף כל ערב, כשהקופה מאוזנת, לחצו "💾 סיים ושמור ערב" — והניקוד יתחיל להצטבר.</div></div>${howHTML()}${backupHTML()}`;
   const mx=Math.max(...ag.map(a=>Math.abs(a.pts)),1);
   const q=ag.filter(a=>a.nights>=MIN_NIGHTS);
-  const podCard=(a,cls,ttl)=>`<div class="pod ${cls}"><div class="ttl">${ttl}</div>${mc(avatarFor(a.name))}<b>${esc(a.name)}</b>
-        <div class="pp ${ptsCls(a.pts)} net">${ptxt(a.pts)}</div><div class="ps">${sgn(a.net)} · ${a.nights} ערבים</div></div>`;
-  const pod = q.length>=2
-    ? `<div class="podium">${podCard(q[0],'top','🥇 המוביל')}${podCard(q[q.length-1],'low','🐟 הכי חלש')}</div>`
-    : `<div class="card muted" style="text-align:center">🥇 התארים "המוביל" ו"הכי חלש" יחולקו כשלפחות 2 שחקנים ישחקו ${MIN_NIGHTS} ערבים</div>`;
+  const pod = podiumHTML(q) + titlesHTML(ag,q);
   const lead=q.length>=2?q[0].name:null, last=q.length>=2?q[q.length-1].name:null;
   const rows = ag.map((a,i)=>{
     const w=Math.abs(a.pts)/mx*100;
     const tag = a.name===lead?'lead' : a.name===last?'last':'';
-    return `<div class="lb ${tag}">
+    return `<div class="lb ${tag}" onclick="openPlayer(${jsq(a.name)})" style="cursor:pointer">
       <span class="rk">${i+1}</span>${mc(avatarFor(a.name))}
       <div class="lbm">
         <div class="lbt"><b>${esc(a.name)}</b><span class="pts net ${ptsCls(a.pts)}">${ptxt(a.pts)}</span></div>
@@ -630,7 +747,7 @@ function boardHTML(){
       <table class="ptab"><tr><th>שחקן</th><th>כניסות</th><th>רווח</th><th>נק׳</th></tr>
       ${ps.map(p=>`<tr><td>${p.top?'🏆 ':''}${esc(p.name)}</td><td class="num">${p.e}</td><td class="net ${cls(p.net)}">${sgn(p.net)}</td><td class="net ${ptsCls(p.pts)}">${ptxt(p.pts).replace(' נק׳','')}</td></tr>`).join('')}
       </table>
-      <button class="ndel" onclick="deleteGame('${g.id}')">מחק ערב זה</button>
+      <div class="adminrow"><button class="link" onclick="shareNight('${g.id}')">📸 שתף סיכום</button><button class="ndel" onclick="deleteGame('${g.id}')">מחק ערב זה</button></div>
     </details>`;}).join('');
   const vol=P.reduce((s,g)=>s+g.result.players.reduce((a,p)=>a+p.in,0),0);
   return `<div class="sum">
@@ -643,6 +760,189 @@ function boardHTML(){
     ${howHTML()}
     <div class="scard" style="margin-top:12px"><div class="stitle">היסטוריית ערבים</div>${nights}</div>
     ${backupHTML()}`;
+}
+function podiumHTML(q){
+  if(q.length<2) return `<div class="card muted" style="text-align:center">🏆 הבמה תיפתח כשלפחות 2 שחקנים ישחקו ${MIN_NIGHTS} ערבים</div>`;
+  const step=(a,rank)=>a?`<div class="step s${rank}" onclick="openPlayer(${jsq(a.name)})">
+      ${rank===1?'<div class="crown">👑</div>':''}
+      ${mc(avatarFor(a.name))}
+      <b>${esc(a.name)}</b>
+      <div class="spts net ${ptsCls(a.pts)}">${ptxt(a.pts)}</div>
+      <div class="ped"><span>${rank}</span></div>
+    </div>`:'<div class="step empty"></div>';
+  return `<div class="podium3">${step(q[1],2)}${step(q[0],1)}${step(q[2],3)}</div>`;
+}
+function titlesHTML(ag,q){
+  const T=[];
+  const hot=[...ag].filter(a=>a.streak>=2).sort((a,b)=>b.streak-a.streak||b.pts-a.pts)[0];
+  if(hot) T.push(['🔥','הכי חם עכשיו',hot.name,`${hot.streak} ערבים ברצף ברווח`]);
+  const cons=ag.filter(a=>a.nights>=MIN_NIGHTS).sort((a,b)=>b.wins/b.nights-a.wins/a.nights||b.nights-a.nights)[0];
+  if(cons && cons.wins>0) T.push(['🎯','הכי עקבי',cons.name,`${Math.round(cons.wins/cons.nights*100)}% מהערבים ברווח`]);
+  const reb=[...ag].sort((a,b)=>b.entries/b.nights-a.entries/a.nights)[0];
+  if(reb && reb.entries/reb.nights>1.05) T.push(['💸','מלך הריביי',reb.name,`${r1(reb.entries/reb.nights)} כניסות לערב`]);
+  let big=null; played().forEach(g=>g.result.players.forEach(p=>{ const n=p.out-p.in; if(!big||n>big.n) big={name:p.name,n,date:g.date}; }));
+  if(big && big.n>0) T.push(['💰','הערב הכי גדול',big.name,`${sgn(big.n)} · ${fdate(big.date)}`]);
+  if(q.length>=2){ const low=q[q.length-1]; T.push(['🐟','הכי חלש',low.name,`${ptxt(low.pts)} · ${sgn(low.net)}`]); }
+  if(!T.length) return '';
+  return `<div class="titles">${T.map(([e,t,n,sub])=>`<div class="ttile" onclick="openPlayer(${jsq(n)})">
+      <div class="tt"><span>${e}</span>${t}</div>
+      <div class="tw">${mc(avatarFor(n))}<div><b>${esc(n)}</b><small>${sub}</small></div></div>
+    </div>`).join('')}</div>`;
+}
+let profileName=null;
+function openPlayer(name){ profileName=name; renderProfile(); document.body.style.overflow='hidden'; }
+function closePlayer(){ const o=$('sheet'); profileName=null; document.body.style.overflow='';
+  if(o){ o.classList.add('closing'); setTimeout(()=>o.remove(),220); } }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && profileName) closePlayer(); });
+function bigChart(hist){
+  const W=320,H=130,px=10,py=14; const pts=[0]; let c=0; hist.forEach(h=>{ c+=h.net; pts.push(c); });
+  const hi=Math.max(...pts,1), lo=Math.min(...pts,-1);
+  const x=i=>px+(W-2*px)*(pts.length===1?0:i/(pts.length-1)), y=v=>py+(H-2*py)*(1-(v-lo)/(hi-lo));
+  const line=pts.map((v,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join('');
+  const last=pts[pts.length-1], col=last>=0?'var(--win)':'var(--loss)';
+  const area=`${line}L${x(pts.length-1).toFixed(1)},${y(0).toFixed(1)}L${x(0).toFixed(1)},${y(0).toFixed(1)}Z`;
+  const dots=hist.map((h,i)=>`<g onclick="chartTip(${i})"><circle cx="${x(i+1)}" cy="${y(pts[i+1])}" r="14" fill="transparent"/>
+      <circle class="cdot" id="cdot${i}" cx="${x(i+1)}" cy="${y(pts[i+1])}" r="4" fill="${h.net>=0?'var(--win)':'var(--loss)'}" stroke="var(--felt2)" stroke-width="2"/></g>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" class="bigchart" role="img" aria-label="רווח מצטבר לאורך הערבים">
+    <line x1="${px}" x2="${W-px}" y1="${y(0)}" y2="${y(0)}" stroke="var(--dim)" stroke-opacity=".45" stroke-dasharray="3 4"/>
+    <path d="${area}" fill="${col}" fill-opacity=".1"/>
+    <path d="${line}" fill="none" stroke="${col}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    ${dots}</svg>`;
+}
+let tipHist=[];
+function chartTip(i){
+  const h=tipHist[i]; if(!h) return;
+  document.querySelectorAll('.cdot').forEach(d=>d.setAttribute('r','4')); const d=$('cdot'+i); if(d) d.setAttribute('r','6.5');
+  let cum=0; for(let k=0;k<=i;k++) cum+=tipHist[k].net;
+  $('ctip').innerHTML=`<b>${fdate(h.date)}</b>${h.place?' · '+esc(h.place):''} · <span class="net ${cls(h.net)}">${sgn(h.net)}</span> · מצטבר <span class="net ${cls(cum)}">${sgn(cum)}</span>`;
+}
+function renderProfile(){
+  if(!profileName) return;
+  const ag=aggregate(), i=ag.findIndex(a=>a.name===profileName), a=ag[i];
+  let o=$('sheet');
+  if(!a){ if(o) o.remove(); profileName=null; return; }
+  tipHist=a.hist;
+  const pct=Math.round(a.wins/a.nights*100), bestH=a.hist.reduce((x,h)=>!x||h.net>x.net?h:x,null), worstH=a.hist.reduce((x,h)=>!x||h.net<x.net?h:x,null);
+  const html=`<div class="sheetbg" onclick="closePlayer()"></div>
+    <div class="sheetbox" role="dialog" aria-label="פרופיל ${esc(a.name)}">
+      <div class="grab"></div>
+      <button class="sx" onclick="closePlayer()" aria-label="סגור">✕</button>
+      <div class="phead">${mc(avatarFor(a.name))}<div><h2>${esc(a.name)}</h2>
+        <div class="muted">מקום ${i+1} מתוך ${ag.length} · ${a.nights} ערבים</div></div></div>
+      <div class="pstats">
+        <div><b class="net ${ptsCls(a.pts)}">${ptxt(a.pts)}</b><small>ניקוד</small></div>
+        <div><b class="net ${cls(a.net)}">${sgn(a.net)}</b><small>רווח כולל</small></div>
+        <div><b class="net ${ptsCls(a.avg)}">${ptxt(a.avg)}</b><small>ממוצע לערב</small></div>
+        <div><b>${pct}%</b><small>ערבים ברווח</small></div>
+        <div><b>${r1(a.entries/a.nights)}</b><small>כניסות לערב</small></div>
+        <div><b>🏆 ${a.titles}</b><small>הכי רווחי בערב</small></div>
+      </div>
+      <div class="pcard"><div class="stitle">הרווח לאורך זמן</div>${bigChart(a.hist)}
+        <div class="ctip" id="ctip">לחצו על נקודה כדי לראות את הערב</div></div>
+      <div class="bw">
+        <div class="pcard"><small>💚 הערב הכי טוב</small><b class="net ${cls(bestH.net)}">${sgn(bestH.net)}</b><small>${fdate(bestH.date)}</small></div>
+        <div class="pcard"><small>💔 הערב הכי גרוע</small><b class="net ${cls(worstH.net)}">${sgn(worstH.net)}</b><small>${fdate(worstH.date)}</small></div>
+      </div>
+      <div class="pcard"><div class="stitle">כל הערבים</div>
+        <table class="ptab"><tr><th>תאריך</th><th>כניסות</th><th>רווח</th><th>נק׳</th></tr>
+        ${[...a.hist].reverse().map(h=>`<tr><td>${h.top?'🏆 ':''}${fdate(h.date)}</td><td class="num">${h.e}</td><td class="net ${cls(h.net)}">${sgn(h.net)}</td><td class="net ${ptsCls(h.pts)}">${ptxt(h.pts).replace(' נק׳','')}</td></tr>`).join('')}
+        </table></div>
+    </div>`;
+  if(!o){ o=document.createElement('div'); o.id='sheet'; o.className='sheet'; document.body.appendChild(o); }
+  o.innerHTML=html;
+}
+/* ================= night summary image ================= */
+function settleNets(list){
+  const cr=list.filter(x=>x.net>0.005).map(x=>({...x})).sort((a,b)=>b.net-a.net);
+  const db=list.filter(x=>x.net<-0.005).map(x=>({...x,net:-x.net})).sort((a,b)=>b.net-a.net);
+  const tx=[]; let i=0,j=0;
+  while(i<db.length&&j<cr.length){ const amt=Math.min(db[i].net,cr[j].net); tx.push({from:db[i].name,to:cr[j].name,amt});
+    db[i].net-=amt; cr[j].net-=amt; if(db[i].net<0.005)i++; if(cr[j].net<0.005)j++; }
+  return tx;
+}
+function loadImg(src){ return new Promise(ok=>{ const im=new Image(); im.onload=()=>ok(im); im.onerror=()=>ok(null); im.src=src; }); }
+async function drawAvatar(ctx,name,cx,cy,r,ring){
+  const a=avatarFor(name);
+  ctx.save(); ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.closePath();
+  if(a.photo){ const im=await loadImg(a.photo); ctx.clip(); if(im) ctx.drawImage(im,cx-r,cy-r,r*2,r*2); }
+  else { ctx.fillStyle=a.color; ctx.fill(); ctx.fillStyle='#fff'; ctx.font=`${Math.round(r*1.0)}px sans-serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(a.emoji.replace(/&#39;/g,"'"),cx,cy+2); }
+  ctx.restore();
+  if(ring){ ctx.beginPath(); ctx.arc(cx,cy,r+3,0,Math.PI*2); ctx.lineWidth=ring.w; ctx.strokeStyle=ring.c; ctx.stroke(); }
+}
+async function makeSummary(gid){
+  const g=DATA.games[gid]; if(!g||!g.result) return null;
+  try{ await Promise.all([document.fonts.load("900 40px 'Heebo'"),document.fonts.load("900 40px 'Frank Ruhl Libre'"),document.fonts.load("600 30px 'Assistant'")]); }catch(e){}
+  const ps=nightScores(g), tx=settleNets(ps.map(p=>({name:p.name,net:p.net})));
+  const W=1080, rowH=92, H=640+ps.length*rowH+(tx.length?110+tx.length*64:0)+120;
+  const c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  x.direction='rtl';
+  const bg=x.createRadialGradient(W/2,0,50,W/2,H*0.3,H); bg.addColorStop(0,'#1d5f4b'); bg.addColorStop(.5,'#0f4034'); bg.addColorStop(1,'#08241c');
+  x.fillStyle=bg; x.fillRect(0,0,W,H);
+  x.globalAlpha=.05; x.fillStyle='#fff'; x.font='220px serif'; x.textAlign='center'; x.fillText('♠ ♥',W/2,H-60); x.globalAlpha=1;
+  const R=W-70, L=70;
+  x.textAlign='right'; x.textBaseline='alphabetic';
+  const gold=x.createLinearGradient(0,60,0,130); gold.addColorStop(0,'#f6dfa6'); gold.addColorStop(1,'#c8a45c');
+  x.fillStyle=gold; x.font="900 76px 'Frank Ruhl Libre', serif"; x.fillText('הקופה',R,130);
+  x.fillStyle='#a9b3a5'; x.font="700 34px 'Heebo', sans-serif"; x.fillText(`${dayLabel(g.date)}${g.place?' · '+g.place:''}`,R,185);
+  // winner
+  const w=ps.find(p=>p.top);
+  let y=230;
+  x.fillStyle='rgba(230,202,139,.10)'; roundRect(x,L,y,W-2*L,300,36); x.fill();
+  x.strokeStyle='rgba(230,202,139,.45)'; x.lineWidth=2; roundRect(x,L,y,W-2*L,300,36); x.stroke();
+  if(w){
+    await drawAvatar(x,w.name,R-140,y+150,100,{c:'#e6ca8b',w:8});
+    x.textAlign='right'; x.fillStyle='#e6ca8b'; x.font="800 34px 'Heebo', sans-serif"; x.fillText('🏆 המנצח של הערב',R-280,y+100);
+    x.fillStyle='#f3ebd8'; x.font="900 72px 'Heebo', sans-serif"; x.fillText(w.name,R-280,y+180);
+    x.fillStyle='#5fd39a'; x.font="900 58px 'Heebo', sans-serif"; x.fillText(sgn(w.net),R-280,y+252);
+  } else { x.textAlign='center'; x.fillStyle='#f3ebd8'; x.font="800 48px 'Heebo', sans-serif"; x.fillText('כולם בתיקו 🤝',W/2,y+165); }
+  // results
+  y+=360; x.textAlign='right'; x.fillStyle='#e6ca8b'; x.font="900 42px 'Frank Ruhl Libre', serif"; x.fillText('תוצאות הערב',R,y);
+  y+=30;
+  for(const [k,p] of ps.entries()){
+    const ry=y+k*rowH;
+    if(k%2===0){ x.fillStyle='rgba(243,235,216,.04)'; roundRect(x,L,ry,W-2*L,rowH-8,20); x.fill(); }
+    await drawAvatar(x,p.name,R-46,ry+(rowH-8)/2,32,null);
+    x.textAlign='right'; x.fillStyle='#f3ebd8'; x.font="700 40px 'Assistant', sans-serif"; x.fillText(p.name,R-100,ry+56);
+    x.fillStyle='#a9b3a5'; x.font="600 28px 'Assistant', sans-serif"; x.fillText(`${p.e} ${p.e===1?'כניסה':'כניסות'}`,R-430,ry+54);
+    x.textAlign='left'; x.fillStyle=p.net>0.005?'#5fd39a':p.net<-0.005?'#e0736b':'#a9b3a5'; x.font="900 42px 'Heebo', sans-serif";
+    x.direction='ltr'; x.fillText((p.net>0.005?'+':p.net<-0.005?'−':'')+Math.abs(Math.round(p.net))+' ₪',L+30,ry+57); x.direction='rtl';
+  }
+  y+=ps.length*rowH+40;
+  if(tx.length){
+    x.textAlign='right'; x.fillStyle='#e6ca8b'; x.font="900 42px 'Frank Ruhl Libre', serif"; x.fillText('מי משלם למי',R,y); y+=30;
+    tx.forEach((t,k)=>{ const ty=y+k*64+42;
+      x.textAlign='right'; x.fillStyle='#f3ebd8'; x.font="700 36px 'Assistant', sans-serif";
+      x.fillText(`${t.from} משלם ל־${t.to}`,R,ty);
+      x.textAlign='left'; x.fillStyle='#e6ca8b'; x.font="900 38px 'Heebo', sans-serif"; x.direction='ltr'; x.fillText(Math.round(t.amt)+' ₪',L+30,ty); x.direction='rtl'; });
+    y+=tx.length*64+40;
+  }
+  const pot=ps.reduce((a,p)=>a+p.in,0);
+  x.textAlign='center'; x.fillStyle='#a9b3a5'; x.font="700 30px 'Heebo', sans-serif";
+  x.fillText(`💰 בקופה: ${fmt(pot)} · ${ps.length} שחקנים`,W/2,H-60);
+  return c;
+}
+function roundRect(x,a,b,w,h,r){ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w,b,a+w,b+h,r); x.arcTo(a+w,b+h,a,b+h,r); x.arcTo(a,b+h,a,b,r); x.arcTo(a,b,a+w,b,r); x.closePath(); }
+async function shareNight(gid){
+  const c=await makeSummary(gid); if(!c) return;
+  const g=DATA.games[gid], name=`poker-${g.date}.png`;
+  const url=c.toDataURL('image/png');
+  let o=document.createElement('div'); o.className='sheet'; o.id='imgsheet';
+  o.innerHTML=`<div class="sheetbg" onclick="this.parentNode.remove()"></div>
+    <div class="sheetbox"><div class="grab"></div><button class="sx" onclick="$('imgsheet').remove()" aria-label="סגור">✕</button>
+      <div class="stitle" style="margin:4px 0 10px">📸 סיכום הערב</div>
+      <img src="${url}" alt="סיכום הערב" style="width:100%;border-radius:14px;display:block">
+      <div class="btnrow"><button class="bigbtn" id="shareImgBtn">💬 שתף בוואטסאפ</button></div>
+      <div class="btnrow"><a class="ghost" href="${url}" download="${name}" style="text-decoration:none">⬇️ שמור תמונה</a></div>
+    </div>`;
+  document.body.appendChild(o);
+  $('shareImgBtn').onclick=async()=>{
+    try{
+      const blob=await new Promise(r=>c.toBlob(r,'image/png')); const f=new File([blob],name,{type:'image/png'});
+      if(navigator.canShare&&navigator.canShare({files:[f]})){ await navigator.share({files:[f]}); return; }
+    }catch(e){ if(e&&e.name==='AbortError') return; }
+    alert('השיתוף הישיר לא נתמך בדפדפן הזה — לחצו "שמור תמונה" ושלחו אותה מהגלריה');
+  };
 }
 function howHTML(){
   return `<details class="how"><summary>איך מחושב הניקוד? ▾</summary>
@@ -658,6 +958,32 @@ function backupHTML(){
       <button onclick="exportH()">⬇️ גיבוי</button>
       <label>⬆️ טעינת גיבוי<input type="file" accept=".json,application/json" hidden onchange="importH(this.files[0])"></label>
     </div>`;
+}
+
+/* ================= sound & haptics ================= */
+let SOUND = LS.get('kupa_sound', true), AC=null;
+function toggleSound(){ SOUND=!SOUND; LS.set('kupa_sound',SOUND); render(); if(SOUND) sfx('chip'); }
+function buzz(p){ try{ if(navigator.vibrate) navigator.vibrate(p); }catch(e){} }
+function ac(){ if(!AC){ const C=window.AudioContext||window.webkitAudioContext; if(!C) return null; AC=new C(); } if(AC.state==='suspended') AC.resume(); return AC; }
+function clack(a,t,vol,freq){
+  const len=0.06, buf=a.createBuffer(1,a.sampleRate*len,a.sampleRate), d=buf.getChannelData(0);
+  for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,6);
+  const src=a.createBufferSource(); src.buffer=buf;
+  const bp=a.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=freq; bp.Q.value=2.5;
+  const g=a.createGain(); g.gain.value=vol;
+  src.connect(bp).connect(g).connect(a.destination); src.start(t);
+}
+function tone(a,t,f,dur,vol){
+  const o=a.createOscillator(), g=a.createGain(); o.type='triangle'; o.frequency.value=f;
+  g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(vol,t+0.01); g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  o.connect(g).connect(a.destination); o.start(t); o.stop(t+dur+0.02);
+}
+function sfx(kind){
+  if(!SOUND) return; const a=ac(); if(!a) return; const t=a.currentTime+0.01;
+  if(kind==='tick') clack(a,t,0.25,3200);
+  else if(kind==='chip'){ clack(a,t,0.6,2400); clack(a,t+0.07,0.45,2900); }
+  else if(kind==='chips'){ for(let i=0;i<5;i++) clack(a,t+i*0.055+Math.random()*0.02,0.5-i*0.06,2200+Math.random()*1200); }
+  else if(kind==='win'){ [523,659,784,1047].forEach((f,i)=>tone(a,t+i*0.09,f,0.35,0.12)); clack(a,t,0.4,2600); }
 }
 
 /* ================= render ================= */
@@ -677,18 +1003,21 @@ function render(){
   else st=[slow?'off':'', slow?'לא מצליח להתחבר':'מתחבר…'];
   const cloud = `<button class="cloud ${st[0]}" onclick="connInfo()" style="background:none;border:none;font-family:inherit;cursor:pointer"><i></i>${st[1]}</button>`;
   const body = tab==='kupa' ? kupaHTML() : tab==='board' ? boardHTML() : nextHTML();
-  $('app').innerHTML = `<header><h1>הקופה</h1><span>פוקר ביתי</span>${cloud}</header>${body}`;
+  const snd = `<button class="sndbtn" onclick="toggleSound()" aria-label="${SOUND?'השתק צלילים':'הפעל צלילים'}">${SOUND?'🔊':'🔇'}</button>`;
+  $('app').innerHTML = `<header><h1>הקופה</h1><span>פוקר ביתי</span>${cloud}${snd}</header>${body}`;
   $('tabs').innerHTML = `<div>
     <button class="${tab==='next'?'on':''}" onclick="go('next')"><span>📅</span>ערב הבא</button>
     <button class="${tab==='kupa'?'on':''}" onclick="go('kupa')"><span>🧮</span>קופה</button>
     <button class="${tab==='board'?'on':''}" onclick="go('board')"><span>🏆</span>טבלה</button></div>`;
+  if(profileName) renderProfile();
 }
 function connInfo(){
   alert(['מצב חיבור:', 'שרת: '+(CLOUD?'Firebase':'מקומי בלבד'), 'ספריית Firebase נטענה: '+(typeof firebase!=='undefined'?'כן':'לא'),
     'נתונים התקבלו: '+(loaded?'כן':'לא'), 'חיבור חי: '+(ONLINE===null?'עוד לא ידוע':ONLINE?'כן':'לא'),
     'ערבים בשרת: '+Object.keys(DATA.games).length, loadErr?('שגיאה: '+loadErr):''].filter(Boolean).join('\n'));
 }
-function go(t){ tab=t; LS.set('kupa_tab',t); adminForm=false; render(); window.scrollTo(0,0); }
+function go(t){ if(profileName) closePlayer(); const changed=t!==tab; tab=t; LS.set('kupa_tab',t); adminForm=false; render(); window.scrollTo(0,0);
+  if(changed){ sfx('tick'); buzz(8); const a=$('app'); a.classList.remove('tabin'); void a.offsetWidth; a.classList.add('tabin'); } }
 
 /* ================= actions: calculator ================= */
 function rename(i,v){
@@ -703,7 +1032,7 @@ function onExit(i,val){
   S.players[i].cashOut = v==='' ? null : (parseFloat(v)||0);
   save(); updateNet(i); updatePot(); updateSettle();
 }
-function rebuy(i){ S.players[i].buyIn += S.buyIn; save(); render(); }
+function rebuy(i){ S.players[i].buyIn += S.buyIn; save(); render(); sfx('chip'); buzz(18); const r=$('row'+i); if(r){ r.classList.add('flash'); } }
 function cycle(i){ const p=S.players[i]; if(photoFor(p)) return; p.emoji=EMO[(EMO.indexOf(p.emoji)+1)%EMO.length]; save(); render(); }
 function setBuyIn(v){ const n=parseInt(v); if(n>0) S.buyIn=n; save(); render(); }
 function unsavedWork(){ return named().length>=2 && !isSaved(); }
@@ -721,7 +1050,7 @@ async function saveNight(){
   const rec={ date:d, time:(g&&g.time)||'', place:(g&&g.place)||'', buyIn:S.buyIn,
     rsvp:(g&&g.rsvp)||null, created:(g&&g.created)||Date.now(),
     result:{ players: named().map(p=>({name:p.name.trim(), in:p.buyIn, out:p.cashOut})), savedAt:Date.now() } };
-  S.gameId=id; S.date=d; save();
+  S.gameId=id; S.date=d; save(); sfx('win'); buzz([20,60,30]);
   try{ await dbSet('games/'+id, rec); }catch(e){ alert('השמירה נכשלה: '+e.message); }
   render();
 }
@@ -729,10 +1058,11 @@ async function saveNight(){
 /* ================= actions: next game ================= */
 function setMe(n){ me=n; pickMe=false; LS.set('kupa_me',n); render(); }
 function setMeOther(){ const n=prompt('מה השם שלך?'); if(n&&n.trim()) setMe(n.trim().slice(0,16)); }
-function toggleRsvp(id){
+function toggleRsvp(id,btn){
   const g=DATA.games[id]; if(!g||!me) return;
-  const k=key(me);
-  dbSet(`games/${id}/rsvp/${k}`, g.rsvp[k] ? null : {name:me, at:Date.now()});
+  const k=key(me), joining=!g.rsvp[k];
+  if(joining){ burst(btn); sfx('chips'); buzz([12,40,12]); } else sfx('tick');
+  dbSet(`games/${id}/rsvp/${k}`, joining ? {name:me, at:Date.now()} : null);
 }
 async function openForm(){ if(!await requirePin()) return; adminForm=true; render(); }
 function createGame(){
